@@ -2,7 +2,7 @@
 This is empty on purpose! Your code to build the resume will go here.
  */
 var work = {
-	"job": [
+	"jobs": [
 		{
 			"employer": "Polygon Homes",
 			"title": "Customer Information Manager",
@@ -96,6 +96,29 @@ if (bio.skills.length > 0) {
 	$("#skills").append(formattedSkill);
 }
 
-for (job in work.job) {
-	
+
+function displayWork() {
+	for (job in work.jobs) {
+		$("#workExperience").append(HTMLworkStart);
+
+		var formattedEmployer = 
+		HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		var formattedEmployerTitle = formattedEmployer + formattedTitle;
+		$(".work-entry:last").append(formattedEmployerTitle);
+
+		var formattedEmployerLocation = 
+		HTMLworkLocation.replace("%data%",work.jobs[job].location);
+		$(".work-entry:last").append(formattedEmployerLocation);
+
+		var formattedEmployerDates = 
+		HTMLworkDates.replace("%data%",work.jobs[job].dates);
+		$(".work-entry:last").append(formattedEmployerDates);
+
+		var formattedEmployeeDescription = 
+		HTMLworkDescription.replace("%data%",work.jobs[job].description);
+		$(".work-entry:last").append(formattedEmployeeDescription);
+	};
 }
+
+displayWork();
