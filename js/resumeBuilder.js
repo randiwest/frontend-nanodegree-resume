@@ -122,3 +122,18 @@ function displayWork() {
 }
 
 displayWork();
+
+$("#main").append(internationalizeButton);
+
+function inName(iname) {
+	var array = iname.trim().split(" ");
+	var firstName = array[0];
+	var lastName = array[1];
+
+	var finalName = firstName.slice(0,1).toUpperCase() + 
+	firstName.slice(1).toLowerCase() + " " + lastName.toUpperCase();
+
+	return finalName;
+}
+
+inName(bio.name);
