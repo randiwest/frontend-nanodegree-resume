@@ -1,6 +1,8 @@
 /*
 This is empty on purpose! Your code to build the resume will go here.
  */
+
+
 var work = {
 	"jobs": [
 		{
@@ -26,25 +28,26 @@ var projects = {
 			"title": "Pricing Maps",
 			"dates": "In progress",
 			"description": "Electronic pricing maps to improve sales pricing experiences",
-			"images": ["https://images.unsplash.com/photo-1438480478735-3234e63615bb?q=80&fm=jpg&s=8fddc1c4c240e145cf6b65a21ae92087"]
+			"images": ["images/subway-small.jpg"]
 		},
 		{
-		"title": "Development Gantt Chart",
-		"dates": "Spring/Summer 2015",
-		"description": "Gantt chart from within Salesforce for Development",
-		"images": ["https://images.unsplash.com/photo-1438029071396-1e831a7fa6d8?q=80&fm=jpg&s=f9871beffe0d05c626a91cb5dce35a81",
-		"https://images.unsplash.com/photo-1438368915865-a852ef86fc42?q=80&fm=jpg&s=15e4744077e36852ba57f46f4660dc7a"]
+			"title": "Development Gantt Chart",
+			"dates": "Spring/Summer 2015",
+			"description": "Gantt chart from within Salesforce for Development",
+			"images": ["images/notebook-small.jpg",
+			"images/table-small.jpg"]
 		}
 	]
 }
 
 var bio = {
 	"name": "Randi West",
-	"role": "Customer Information Manager",
+	"role": "Customer Information Manager/Salesforce System Administrator",
 	"welcomeMessage": "Hello!!",
+	"image": "https://media.licdn.com/media/p/7/005/0b5/02b/18b7e62.jpg",
 	"contacts": {
-		"mobile": "778-908-1270",
-		"email": "randiwest@digitalshift.ca",
+		"mobile": "778-778-7788",
+		"email": "randiwest@example.com",
 		"github": "randiwest",
 		"twitter": "@WestRandi",
 		"location": "Vancouver"
@@ -81,21 +84,41 @@ var education = {
 	]
 }
 
-var formattedName = HTMLheaderName.replace("%data%", "Randi West");
-$("#header").append(formattedName)
+function displayBio() {
+	var formattedName = HTMLheaderName.replace("%data%", bio.name);
+	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+	var formattedBioImage = HTMLbioPic.replace("%data%", bio.image);
+	var formattedWelcomeMessage = HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
 
-if (bio.skills.length > 0) {
-	$("#header").append(HTMLskillsStart);
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-	$("#skills").append(formattedSkill);
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-	$("#skills").append(formattedSkill);
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-	$("#skills").append(formattedSkill);
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-	$("#skills").append(formattedSkill);
+	$("#header").prepend(formattedRole).prepend(formattedName)
+		.append(formattedBioImage)
+		.append(formattedWelcomeMessage);
+
+	var formattedMobile = HTMLmobile.replace("%data%",bio.contacts.mobile);
+	var formattedEmail = HTMLemail.replace("%data%",bio.contacts.email);
+	var formattedTwitter = HTMLtwitter.replace("%data%",bio.contacts.twitter);
+	var formattedGithub = HTMLgithub.replace("%data%",bio.contacts.github);
+
+	$("#topContacts").append(formattedMobile)
+		.append(formattedEmail)
+		.append(formattedGithub)
+		.append(formattedTwitter);
+
+	if (bio.skills.length > 0) {
+		$("#header").append(HTMLskillsStart);
+		for (skill in bio.skills) {
+			var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+			$("#skills").append(formattedSkill);
+		}
+	}
+
+	
+		
+
+	
 }
 
+displayBio();
 
 function displayWork() {
 	for (job in work.jobs) {
@@ -103,7 +126,8 @@ function displayWork() {
 
 		var formattedEmployer = 
 		HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		var formattedTitle = 
+		HTMLworkTitle.replace("%data%", work.jobs[job].title);
 		var formattedEmployerTitle = formattedEmployer + formattedTitle;
 		$(".work-entry:last").append(formattedEmployerTitle);
 
@@ -137,3 +161,35 @@ function inName(iname) {
 }
 
 inName(bio.name);
+
+function displayProjects() {
+	for (project in projects.project) {
+		$("#projects").append(HTMLprojectStart);
+
+		var formattedProjectStart = 
+		HTMLprojectTitle.replace("%data%",projects.project[project].title);
+		$(".project-entry:last").append(formattedProjectStart);
+
+		var formattedProjectDates = 
+		HTMLprojectDates.replace("%data%",projects.project[project].dates);
+		$(".project-entry:last").append(formattedProjectDates);
+
+		var formattedProjectDescription = 
+		HTMLprojectDescription.replace("%data%",projects.project[project].description);
+		$(".project-entry:last").append(formattedProjectDescription);
+
+		if (projects.project[project].images.length > 0) {
+			for (image in projects.project[project].images) {
+				var formattedImage = 
+				HTMLprojectImage.replace("%data%",projects.project[project].images[image]);
+				$(".project-entry:last").append(formattedImage);			
+			}	
+		}
+	}
+}
+
+displayProjects();
+
+//map section
+
+$("#mapDiv").append(googleMap);
