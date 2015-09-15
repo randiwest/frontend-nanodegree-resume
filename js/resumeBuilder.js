@@ -16,26 +16,29 @@ var bio = {
 	},
 	'skills': ['Efficient','Resourceful','Intelligent','Organized','Clever'],
 	'display': function() {
-		var formattedName = HTMLheaderName.replace('%data%', bio.name);
-		var formattedRole = HTMLheaderRole.replace('%data%', bio.role);
-		var formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic);
-		var formattedWelcomeMessage = 
-		HTMLwelcomeMsg.replace('%data%',bio.welcomeMessage);
-		var formattedMobile = HTMLmobile.replace('%data%',bio.contacts.mobile);
-		var formattedEmail = HTMLemail.replace('%data%',bio.contacts.email);
-		var formattedTwitter = HTMLtwitter.replace('%data%',bio.contacts.twitter);
-		var formattedGithub = HTMLgithub.replace('%data%',bio.contacts.github);
+		var formattedName = HTMLheaderName.replace('%data%', bio.name),
+			formattedRole = HTMLheaderRole.replace('%data%', bio.role),
+			formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic),
+			formattedWelcomeMessage = HTMLwelcomeMsg.replace('%data%',bio.welcomeMessage),
+			formattedMobile = HTMLmobile.replace('%data%',bio.contacts.mobile),
+			formattedEmail = HTMLemail.replace('%data%',bio.contacts.email),
+			formattedTwitter = HTMLtwitter.replace('%data%',bio.contacts.twitter),
+			formattedGithub = HTMLgithub.replace('%data%',bio.contacts.github);
 
-		$('#header').prepend(formattedRole).prepend(formattedName)
+		$('#header')
+			.prepend(formattedRole)
+			.prepend(formattedName)
 			.append(formattedBioPic)
 			.append(formattedWelcomeMessage);
 
-		$('#topContacts').append(formattedMobile)
+		$('#topContacts')
+			.append(formattedMobile)
 			.append(formattedEmail)
 			.append(formattedGithub)
 			.append(formattedTwitter);
 
-		$('#footerContacts').append(formattedMobile)
+		$('#footerContacts')
+			.append(formattedMobile)
 			.append(formattedEmail)
 			.append(formattedGithub)
 			.append(formattedTwitter);
@@ -43,14 +46,12 @@ var bio = {
 		if (bio.skills.length > 0) {
 			$('#header').append(HTMLskillsStart);
 			for (var skill in bio.skills) {
-				var formattedSkill = 
-				HTMLskills.replace('%data%', bio.skills[skill]);
+				var formattedSkill = HTMLskills.replace('%data%', bio.skills[skill]);
 				$('#skills').append(formattedSkill);
 			}
 		}
 	}
 };
-
 
 var work = {
 	'jobs':[
@@ -99,24 +100,19 @@ var work = {
 	],
 	'display': function() {
 		for (var job in work.jobs) {
-			var formattedEmployer = 
-			HTMLworkEmployer.replace('%data%', work.jobs[job].employer);
-			var formattedTitle = 
-			HTMLworkTitle.replace('%data%', work.jobs[job].title);
-			var formattedEmployerTitle = formattedEmployer + formattedTitle;
-			var formattedEmployerLocation = 
-			HTMLworkLocation.replace('%data%',work.jobs[job].location);
-			var formattedEmployerDates = 
-			HTMLworkDates.replace('%data%',work.jobs[job].dates);
-			var formattedEmployeeDescription = 
-			HTMLworkDescription.replace('%data%',work.jobs[job].description);
+			var formattedEmployer = HTMLworkEmployer.replace('%data%', work.jobs[job].employer),
+				formattedTitle = HTMLworkTitle.replace('%data%', work.jobs[job].title),
+				formattedEmployerTitle = formattedEmployer + formattedTitle,
+				formattedEmployerLocation = HTMLworkLocation.replace('%data%',work.jobs[job].location),
+				formattedEmployerDates = HTMLworkDates.replace('%data%',work.jobs[job].dates),
+				formattedEmployeeDescription = HTMLworkDescription.replace('%data%',work.jobs[job].description);
 
 			$('#workExperience').append(HTMLworkStart);
-			$('.work-entry:last').append(formattedEmployerTitle)
+			$('.work-entry:last')
+				.append(formattedEmployerTitle)
 				.append(formattedEmployerLocation)
 				.append(formattedEmployerDates)
 				.append(formattedEmployeeDescription);
-
 		}
 	}
 };
@@ -168,22 +164,19 @@ var projects = {
 	],
 	'display': function() {
 		for (var project in projects.project) {
-			var formattedProjectTitle = 
-			HTMLprojectTitle.replace('%data%',projects.project[project].title);
-			var formattedProjectDates = 
-			HTMLprojectDates.replace('%data%',projects.project[project].dates);
-			var formattedProjectDescription = 
-			HTMLprojectDescription.replace('%data%',projects.project[project].description);
+			var formattedProjectTitle = HTMLprojectTitle.replace('%data%',projects.project[project].title),
+				formattedProjectDates = HTMLprojectDates.replace('%data%',projects.project[project].dates),
+				formattedProjectDescription = HTMLprojectDescription.replace('%data%',projects.project[project].description);
 
 			$('#projects').append(HTMLprojectStart);
-			$('.project-entry:last').append(formattedProjectTitle)
+			$('.project-entry:last')
+				.append(formattedProjectTitle)
 				.append(formattedProjectDates)
 				.append(formattedProjectDescription);
 
 			if (projects.project[project].images.length > 0) {
 				for (var image in projects.project[project].images) {
-					var formattedImage = 
-					HTMLprojectImage.replace('%data%',projects.project[project].images[image]);
+					var formattedImage = HTMLprojectImage.replace('%data%',projects.project[project].images[image]);
 					$('.project-entry:last').append(formattedImage);
 				}
 			}
@@ -220,43 +213,34 @@ var education = {
 	],
 	'display': function() {
 		for (var school in education.school) {
-			var formattedSchoolName = 
-			HTMLschoolName.replace('%data%',education.school[school].name);
-			var formattedSchoolDegree = 
-			HTMLschoolDegree.replace('%data%',education.school[school].degree);
-			var formattedSchoolDates = 
-			HTMLschoolDates.replace('%data%',education.school[school].dates);
-			var formattedSchoolLocation = 
-			HTMLschoolLocation.replace('%data%',education.school[school].location);
-			var formattedSchoolMajor = 
-			HTMLschoolMajor.replace('%data%',education.school[school].majors);
+			var formattedSchoolName = HTMLschoolName.replace('%data%',education.school[school].name),
+				formattedSchoolDegree = HTMLschoolDegree.replace('%data%',education.school[school].degree),
+				formattedSchoolNameDegree = formattedSchoolName + formattedSchoolDegree,
+				formattedSchoolDates = HTMLschoolDates.replace('%data%',education.school[school].dates),
+				formattedSchoolLocation = HTMLschoolLocation.replace('%data%',education.school[school].location),
+				formattedSchoolMajor = HTMLschoolMajor.replace('%data%',education.school[school].majors);
 
 			$('#education').append(HTMLschoolStart);
-			$('.education-entry:last').append(formattedSchoolName)
-				.append(formattedSchoolDegree)
+			$('.education-entry:last')
+				.append(formattedSchoolNameDegree)
 				.append(formattedSchoolDates)
 				.append(formattedSchoolLocation)
 				.append(formattedSchoolMajor);
-
 		}
 		if (education.onlineCourses.length > 0) {
 			$('#education').append(HTMLonlineClasses);
 			for (var course in education.onlineCourses) {
-				var formattedOnlineTitle = 
-				HTMLonlineTitle.replace('%data%',education.onlineCourses[course].title);
-				var formattedOnlineSchool = 
-				HTMLonlineSchool.replace('%data%',education.onlineCourses[course].school);
-				var formattedOnlineDates = 
-				HTMLonlineDates.replace('%data%',education.onlineCourses[course].dates);
-				var formattedOnlineURL = 
-				HTMLonlineURL.replace('%data%',education.onlineCourses[course].url);
+				var formattedOnlineTitle = HTMLonlineTitle.replace('%data%',education.onlineCourses[course].title),
+					formattedOnlineSchool = HTMLonlineSchool.replace('%data%',education.onlineCourses[course].school),
+					formattedOnlineSchoolTitle = formattedOnlineTitle + formattedOnlineSchool,
+					formattedOnlineDates = HTMLonlineDates.replace('%data%',education.onlineCourses[course].dates),
+					formattedOnlineURL = HTMLonlineURL.replace('%data%',education.onlineCourses[course].url);
 
 				$('#education').append(HTMLschoolStart);
-				$('.education-entry:last').append(formattedOnlineTitle)
-					.append(formattedOnlineSchool)
+				$('.education-entry:last')
+					.append(formattedOnlineSchoolTitle)
 					.append(formattedOnlineDates)
 					.append(formattedOnlineURL);
-
 			}
 		}
 	}
@@ -268,10 +252,8 @@ function inName(iname) {
 	var array = iname.trim().split(' ');
 	var firstName = array[0];
 	var lastName = array[1];
-
 	var finalName = firstName.slice(0,1).toUpperCase() + 
 	firstName.slice(1).toLowerCase() + ' ' + lastName.toUpperCase();
-
 	return finalName;
 }
 
